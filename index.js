@@ -17,7 +17,7 @@ var  getPlayerGuess = function(){
         }
     };
 
-    return Number.isInteger(Number(guess));
+    return Number.isInteger(Number(userInput));
 // console.log("you entered a valid num.")
 };
 getPlayerGuess();
