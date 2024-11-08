@@ -51,7 +51,7 @@ var checkGuess = function(userInput, secretNumber) {
 
 ///
 // Function to run the main game logic
-/*function game() {
+function game() {
    //const correctNumber = generateRandomNumber();// Generate random number
 
    
@@ -92,7 +92,7 @@ var checkGuess = function(userInput, secretNumber) {
 
 
 game();//calling the game function to start the game
-*/
+
 
 
 /*function game(){
