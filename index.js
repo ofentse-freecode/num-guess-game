@@ -8,6 +8,8 @@ console.log(generateRandomNumber());
 var  getPlayerGuess = function(){
     while(true) {
         userInput = prompt("Guess the secret number between 1 and 100");
+        
+        userInput = Number(userInput);
 
         if(!isNaN(userInput) && userInput !== ""){
             //console.log(Number.isInteger(Number(guess)));
