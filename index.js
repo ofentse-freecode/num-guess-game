@@ -17,15 +17,15 @@ var  getPlayerGuess = function(){
             break;
         } 
         else {
-            userInput = prompt("Please enter a num")
+            userInput = prompt("Please enter a number")
         }
     };
 
-    return userInput;
+    return Number.isInteger(userInput);
 
 };
 
-function checkGuess(userInput , secretNumber) {
+/*function checkGuess(userInput , secretNumber) {
     if (userInput < secretNumber) {
         console.log("Too low! Try again.");
     } else if (userInput > secretNumber) {
@@ -36,9 +36,27 @@ function checkGuess(userInput , secretNumber) {
     }
     return false; 
 }
+*/
+var checkGuess = function(userInput, secretNumber) {
+   
+    
+    if(userInput == secretNumber){
+        return result = "Correct! You guessed the number."
+       // return result=`You guessed the number correctly! ${userInput} : ${secretNumber}  Reload page to play again!`;
+        
+    } else if(secretNumber > userInput){
+        return result = "Its Higher than that guess again";
+
+    }else if( secretNumber < userInput){
+         return result = "Its Lower than that, guess again";
+    }
+
+    
+};
+
 
 // Function to run the main game logic
-function game() {
+/*function game() {
 
    const targetNumber = generateRandomNumber()
     // Initialize attempt counter
@@ -85,4 +103,31 @@ function game() {
 }
 
 
-game();
+game();*/
+
+function game(){
+
+    generateRandomNumber();
+    getPlayerGuess();
+    //getPlayerGuess();
+    
+    let attempts = 0;
+    //getPlayerGuess();
+    
+    while(true){
+       
+        checkGuess(userInput, secretNumber);
+        attempts++;
+    
+        if(result == "Correct! You guessed the number."){
+            alert(`You guessed the number correctly! ${userInput} : ${secretNumber} with ${attempts} guesses Reload page to play again!`);
+            break;
+        }else if (result == "Its Higher than that guess again"){
+            userInput = prompt("Its Higher than that guess again")
+        }else if (result = "Its Lower than that, guess again"){
+            userInput = prompt("Its Lower than that, guess again")
+        }
+    
+    } 
+    };
+    game();
