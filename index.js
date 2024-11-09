@@ -1,13 +1,12 @@
 //random num
-var generateRandomNumber= function(){
+function generateRandomNumber(){
     return secretNumber = Math.floor(Math.random() * 100) + 1;
 
 };
 
 let attempts = 10; 
 
-
-var  getPlayerGuess = function(){
+function  getPlayerGuess(){
     userInput = prompt("Guess the secret number between 1 and 100");
     userInput = Number(userInput);
 
