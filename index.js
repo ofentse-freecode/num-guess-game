@@ -63,7 +63,8 @@ function game(){
             }
         
     }
+    //alert("Thank you for playing reload to play again");
     }
-    
+     
 };
 game();
