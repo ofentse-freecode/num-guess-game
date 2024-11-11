@@ -1,70 +1,66 @@
+function generateRandomNumber() {
+  return (secretNumber = Math.floor(Math.random() * 100) + 1);
+}
 
-function generateRandomNumber(){
-    return secretNumber = Math.floor(Math.random() * 100) + 1;
-
-};
-
-function  getPlayerGuess(){
-    let userInput = prompt("Guess the secret number between 1 and 100");
-    userInput = Number(userInput);
-    while(true) {
-        if(!isNaN(userInput)){
-            break;
-        } else if(userInput == 0){
-        userInput = alert=("Thanks for trying the game!");
-        }
-        else {
-        userInput = prompt("Please enter a number");
-        }
-    };
-    return userInput;
-};
-
-function checkGuess(userInput, secretNumber){
-   
-    if(userInput == secretNumber){
-        return result = "Correct! You guessed the number."
-        
-    } else if(secretNumber > userInput){
-        return result = "Its Higher than that guess again";
-
-    }else if( secretNumber < userInput){
-         return result = "Its Lower than that, guess again";
+function getPlayerGuess() {
+  let ValidateUserInput = false;
+  let userInput;
+  while (!ValidateUserInput) {
+    let userNumber = prompt("Guess the secret number between 1 and 100");
+    if (userNumber === null) {
+      return null; // added function to check if user wants to exit and return null
     }
-    
-};
+    userInput = parseInt(userNumber, 10) 
+    if (isNaN(userInput) || userInput < 1 || userInput > 100) {
+      alert("Invalid input. Please enter a valid number between 1 and 100.");
+    } else {
+      ValidateUserInput = true;
+    }
+  }
+  return userInput;
+}
 
-function game(){
+function checkGuess(userInput, secretNumber) {
+  if (userInput == secretNumber) {
+    return (result = `Correct! You guessed the number. ${userInput}`);
+  } else if (secretNumber > userInput) {
+    return (result = "Its Higher than that guess again");
+  } else if (secretNumber < userInput) {
+    return (result = "Its Lower than that, guess again");
+  }
+}
 
-    const secretNumber= generateRandomNumber();
-    //getPlayerGuess();
-    let attempts = 0;
+function game() {
+  const secretNumber = generateRandomNumber();
+  let attempts = 0;
+  const maxAttempts = 10;
+  let playerWon = false;
+
+  while (attempts < maxAttempts) {
     userInput = getPlayerGuess();
-
-    //let play = ""
-    if(userInput == 0){
-        alert("Thanks for playing");
-    }else if(!isNaN(userInput)){
-      
-    
-    while (true){
-       // userInput = getPlayerGuess(); 
-
-         result = checkGuess(userInput, secretNumber);
-            attempts++;
-    
-         if(result == "Correct! You guessed the number."){
-            alert(`You guessed the number correctly! ${userInput} : ${secretNumber} with ${attempts} guesses Reload page to play again!`);
-                break;
-            }else if (result == "Its Higher than that guess again"){
-            userInput = prompt("Its Higher than that guess again")
-            }else if (result == "Its Lower than that, guess again"){
-            userInput = prompt("Its Lower than that, guess again")
-            }
-        
+    if (userInput === null) {
+      alert("Thanks for playing! Exiting the game.");
+      return;
     }
-    //alert("Thank you for playing reload to play again");
+
+    attempts++;
+    const result = checkGuess(userInput, secretNumber);
+    alert(result);
+
+    if (result == `Correct! You guessed the number. ${userInput}`) {
+      playerWon = true;
+      break;
+    } else {
+      alert(`Attempts left: ${maxAttempts - attempts}`);
     }
-     
-};
+  }
+  if (playerWon) {
+    alert(`Congratulations! You guessed the number in ${attempts} attempts.`);
+    let score = Math.max(0, 100 - attempts * 10); // Rewarding player with points based on attempts
+    alert(`Your score: ${score} points.`);
+  } else {
+    alert("Sorry, you lost! The correct number was: " + secretNumber);
+    alert(`Attempts used: ${attempts}`);
+  }
+}
 game();
